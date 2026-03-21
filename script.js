@@ -754,6 +754,9 @@ function displayResults(results) {
 
     // Расчет согласованности
     const concordanceData = calculateDetailedConcordance();
+    
+    // Получаем ранги из функции calculateConcordance для отображения
+    const concordanceWithRanks = results.concordance;
 
     html += `
                     <div class="concordance-formulas">
@@ -774,6 +777,46 @@ function displayResults(results) {
                             <div class="formula">χ² = m(n-1)W</div>
                             <p>Критическое значение χ²₀.₀₅ = ${concordanceData.criticalValue}</p>
                         </div>
+                    </div>
+
+                    <div class="expert-rankings-table">
+                        <h4>База экспертов - ранжирование сценариев</h4>
+                        <p style="margin-bottom: 15px; color: #666;">Ранги, проставленные экспертами (1 - лучший, 3 - худший):</p>
+                        <table class="concordance-table">
+                            <thead>
+                                <tr>
+                                    <th>Эксперт</th>
+                                    <th>Сценарий 1</th>
+                                    <th>Сценарий 2</th>
+                                    <th>Сценарий 3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+    `;
+    
+    // Отображаем ранги каждого эксперта
+    if (concordanceWithRanks.rankings) {
+        concordanceWithRanks.rankings.forEach((ranking, index) => {
+            html += `
+                <tr>
+                    <td>Эксперт ${index + 1}</td>
+                    <td>${ranking.s1}</td>
+                    <td>${ranking.s2}</td>
+                    <td>${ranking.s3}</td>
+                </tr>
+            `;
+        });
+    }
+    
+    html += `
+                                <tr class="total-row">
+                                    <td><strong>Сумма рангов</strong></td>
+                                    <td><strong>${concordanceWithRanks.rankSums.s1}</strong></td>
+                                    <td><strong>${concordanceWithRanks.rankSums.s2}</strong></td>
+                                    <td><strong>${concordanceWithRanks.rankSums.s3}</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
 
                     <div class="concordance-calculations">
@@ -798,8 +841,28 @@ function displayResults(results) {
                                     <td>-</td>
                                 </tr>
                                 <tr>
+                                    <td>Сумма рангов С1</td>
+                                    <td>${concordanceWithRanks.rankSums.s1}</td>
+                                    <td>Из таблицы выше</td>
+                                </tr>
+                                <tr>
+                                    <td>Сумма рангов С2</td>
+                                    <td>${concordanceWithRanks.rankSums.s2}</td>
+                                    <td>Из таблицы выше</td>
+                                </tr>
+                                <tr>
+                                    <td>Сумма рангов С3</td>
+                                    <td>${concordanceWithRanks.rankSums.s3}</td>
+                                    <td>Из таблицы выше</td>
+                                </tr>
+                                <tr>
+                                    <td>Средняя сумма рангов</td>
+                                    <td>${concordanceWithRanks.avgRankSum}</td>
+                                    <td>(${concordanceWithRanks.rankSums.s1} + ${concordanceWithRanks.rankSums.s2} + ${concordanceWithRanks.rankSums.s3}) / 3</td>
+                                </tr>
+                                <tr>
                                     <td>Сумма квадратов отклонений (S)</td>
-                                    <td>${concordanceData.S.toFixed(2)}</td>
+                                    <td>${concordanceWithRanks.S}</td>
                                     <td>
                                         <button class="calc-btn" onclick="showConcordanceCalculation('S')">
                                             📊 Показать расчет S
@@ -808,7 +871,7 @@ function displayResults(results) {
                                 </tr>
                                 <tr>
                                     <td>Коэффициент конкордации (W)</td>
-                                    <td>${concordanceData.W.toFixed(4)}</td>
+                                    <td>${concordanceWithRanks.W}</td>
                                     <td>
                                         <button class="calc-btn" onclick="showConcordanceCalculation('W')">
                                             📊 Показать расчет W
@@ -817,19 +880,20 @@ function displayResults(results) {
                                 </tr>
                                 <tr>
                                     <td>Критерий χ²</td>
-                                    <td>${concordanceData.chiSquare.toFixed(4)}</td>
+                                    <td>${concordanceWithRanks.chiSquare}</td>
                                     <td>
                                         <button class="calc-btn" onclick="showConcordanceCalculation('chi')">
                                             📊 Показать расчет χ²
                                         </button>
                                     </td>
                                 </tr>
-                                <tr class="${concordanceData.isSignificant ? 'significant' : 'not-significant'}">
+                                <tr class="${concordanceWithRanks.isSignificant ? 'significant' : 'not-significant'}">
                                     <td>Вывод</td>
                                     <td colspan="2">
-                                        ${concordanceData.isSignificant ?
-                                            'Согласованность экспертов статистически значима' :
-                                            'Согласованность экспертов статистически незначима'}
+                                        ${concordanceWithRanks.isSignificant ?
+                                            `Согласованность экспертов статистически значима (χ² = ${concordanceWithRanks.chiSquare} > ${concordanceWithRanks.chiSquareCritical})` :
+                                            `Согласованность экспертов статистически незначима (χ² = ${concordanceWithRanks.chiSquare} ≤ ${concordanceWithRanks.chiSquareCritical})`}
+                                        <br><strong>${concordanceWithRanks.interpretation}</strong>
                                     </td>
                                 </tr>
                             </tbody>
@@ -896,10 +960,10 @@ function displayResults(results) {
                         <h4>Результаты анализа чувствительности</h4>
                         <div class="sensitivity-charts">
                             <div class="chart-container">
-                                <canvas id="sensitivityChart" width="700" height="400"></canvas>
+                                <canvas id="sensitivityChart" width="1000" height="600"></canvas>
                             </div>
                             <div class="chart-container">
-                                <canvas id="sensitivityRadarChart" width="700" height="400"></canvas>
+                                <canvas id="sensitivityRadarChart" width="1000" height="600"></canvas>
                             </div>
                         </div>
 
@@ -1079,6 +1143,7 @@ function calculateConcordance() {
         S: S.toFixed(2),
         n: n,
         m: m,
+        rankings: rankings, // Добавляем ранги для отображения в таблице
         isSignificant: chiSquare > chiSquareCritical,
         interpretation: W > 0.7 ? 'Высокая согласованность' : W > 0.5 ? 'Средняя согласованность' : 'Низкая согласованность'
     };
@@ -1569,7 +1634,7 @@ function createSensitivityBarChart(sensitivityVariants) {
 
     ctx.clearRect(0, 0, width, height);
 
-    const margin = 60;
+    const margin = 80;
     const chartWidth = width - 2 * margin;
     const chartHeight = height - 2 * margin;
 
@@ -1583,11 +1648,11 @@ function createSensitivityBarChart(sensitivityVariants) {
     ];
 
     const colors = ['#4CAF50', '#2196F3', '#FF9800'];
-    const barWidth = chartWidth / (sensitivityVariants.length * 3) - 5;
+    const barWidth = chartWidth / (sensitivityVariants.length * 3) - 10;
 
     sensitivityVariants.forEach((variant, variantIndex) => {
         results[variantIndex].forEach((score, scenarioIndex) => {
-            const x = margin + (variantIndex * 3 + scenarioIndex) * (barWidth + 5);
+            const x = margin + (variantIndex * 3 + scenarioIndex) * (barWidth + 10);
             const barHeight = (score / 5) * chartHeight;
             const y = margin + chartHeight - barHeight;
 
@@ -1596,32 +1661,32 @@ function createSensitivityBarChart(sensitivityVariants) {
 
             // Значение
             ctx.fillStyle = '#000';
-            ctx.font = '8px Arial';
+            ctx.font = '14px Arial';
             ctx.textAlign = 'center';
-            ctx.fillText(score.toFixed(3), x + barWidth/2, y - 2);
+            ctx.fillText(score.toFixed(3), x + barWidth/2, y - 5);
         });
 
         // Подпись варианта
-        ctx.font = '10px Arial';
+        ctx.font = '16px Arial';
         ctx.textAlign = 'center';
-        const centerX = margin + variantIndex * 3 * (barWidth + 5) + (3 * barWidth + 10) / 2;
-        ctx.fillText(variant.name, centerX, height - 10);
+        const centerX = margin + variantIndex * 3 * (barWidth + 10) + (3 * barWidth + 20) / 2;
+        ctx.fillText(variant.name, centerX, height - 20);
     });
 
     // Заголовок
-    ctx.font = 'bold 12px Arial';
+    ctx.font = 'bold 20px Arial';
     ctx.textAlign = 'center';
-    ctx.fillText('Результаты анализа чувствительности', width/2, 15);
+    ctx.fillText('Результаты анализа чувствительности', width/2, 30);
 
     // Легенда
-    const legendY = 35;
+    const legendY = 55;
     ['Сценарий 1', 'Сценарий 2', 'Сценарий 3'].forEach((label, index) => {
         ctx.fillStyle = colors[index];
-        ctx.fillRect(margin + index * 80, legendY, 10, 10);
+        ctx.fillRect(margin + index * 120, legendY, 15, 15);
         ctx.fillStyle = '#000';
-        ctx.font = '10px Arial';
+        ctx.font = '14px Arial';
         ctx.textAlign = 'left';
-        ctx.fillText(label, margin + index * 80 + 15, legendY + 8);
+        ctx.fillText(label, margin + index * 120 + 20, legendY + 12);
     });
 }
 
@@ -1646,7 +1711,7 @@ function createSensitivityRadarChart(sensitivityVariants) {
     // Рисуем оси и подписи
     ctx.strokeStyle = '#ddd';
     ctx.fillStyle = '#000';
-    ctx.font = '10px Arial';
+    ctx.font = '16px Arial';
 
     categories.forEach((category, index) => {
         const angle = index * angleStep - Math.PI / 2;
@@ -1661,8 +1726,8 @@ function createSensitivityRadarChart(sensitivityVariants) {
 
         // Подпись
         ctx.textAlign = 'center';
-        const labelX = centerX + Math.cos(angle) * (radius + 20);
-        const labelY = centerY + Math.sin(angle) * (radius + 20);
+        const labelX = centerX + Math.cos(angle) * (radius + 40);
+        const labelY = centerY + Math.sin(angle) * (radius + 40);
         ctx.fillText(category, labelX, labelY);
     });
 
@@ -1674,6 +1739,7 @@ function createSensitivityRadarChart(sensitivityVariants) {
         ctx.stroke();
 
         // Подписи значений
+        ctx.font = '14px Arial';
         ctx.fillText((i * 0.125).toFixed(3), centerX + r, centerY - 5);
     }
 
@@ -1681,7 +1747,7 @@ function createSensitivityRadarChart(sensitivityVariants) {
     const baseWeights = [0.35, 0.30, 0.20, 0.15];
     ctx.strokeStyle = '#4CAF50';
     ctx.fillStyle = 'rgba(76, 175, 80, 0.2)';
-    ctx.lineWidth = 2;
+    ctx.lineWidth = 3;
 
     ctx.beginPath();
     baseWeights.forEach((weight, index) => {
@@ -1702,9 +1768,9 @@ function createSensitivityRadarChart(sensitivityVariants) {
 
     // Заголовок
     ctx.fillStyle = '#000';
-    ctx.font = 'bold 12px Arial';
+    ctx.font = 'bold 20px Arial';
     ctx.textAlign = 'center';
-    ctx.fillText('Радарная диаграмма весов (базовый вариант)', centerX, 20);
+    ctx.fillText('Радарная диаграмма весов (базовый вариант)', centerX, 40);
 }
 
 function calculateRankingAnalysis() {
