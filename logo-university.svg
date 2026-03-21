@@ -1,0 +1,21 @@
+<svg width="200" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Университетский логотип -->
+  <rect width="200" height="80" fill="#1e3c72" rx="5"/>
+  
+  <!-- Книга -->
+  <rect x="20" y="25" width="30" height="20" fill="#fff" rx="2"/>
+  <rect x="22" y="27" width="26" height="16" fill="#667eea" rx="1"/>
+  <line x1="25" y1="30" x2="45" y2="30" stroke="#fff" stroke-width="1"/>
+  <line x1="25" y1="33" x2="45" y2="33" stroke="#fff" stroke-width="1"/>
+  <line x1="25" y1="36" x2="40" y2="36" stroke="#fff" stroke-width="1"/>
+  
+  <!-- Текст -->
+  <text x="60" y="32" fill="#fff" font-family="Arial, sans-serif" font-size="11" font-weight="bold">НИТУ</text>
+  <text x="60" y="45" fill="#fff" font-family="Arial, sans-serif" font-size="11" font-weight="bold">«МИСиС»</text>
+  <text x="60" y="58" fill="#fff" font-family="Arial, sans-serif" font-size="9" font-weight="normal">Университет науки и технологий</text>
+  
+  <!-- Декоративные элементы -->
+  <circle cx="175" cy="25" r="8" fill="#667eea"/>
+  <circle cx="175" cy="40" r="6" fill="#764ba2"/>
+  <circle cx="175" cy="55" r="4" fill="#fff"/>
+</svg>

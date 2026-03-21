@@ -1,0 +1,5 @@
+Katieolegovna 
+katya.kurenkova.2002@mail.ru
+expert-evaluation-system
+Веб-приложение для экспертной оценки стратегических сценариев развития неавиационных услуг аэропорта. Метод Кендалла, BSC, анализ чувствительности. 
+https://katieolegovna.github.io/expert-evaluation-system/

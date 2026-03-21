@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Экспертная оценка стратегических сценариев - Аэропорт Шереметьево</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Анимация самолетов -->
+        <div class="airplane-animation airplane-1">✈︎</div>
+        <div class="airplane-animation airplane-2">✈︎</div>
+        <div class="airplane-animation airplane-3">✈︎</div>
+        <div class="airplane-animation airplane-4">✈︎</div>
+        <div class="airplane-animation airplane-5">✈︎</div>
+        <div class="airplane-animation airplane-6">✈︎</div>
+        <div class="airplane-animation airplane-7">✈︎</div>
+        <div class="airplane-animation airplane-8">✈︎</div>
+        <div class="airplane-animation airplane-9">✈︎</div>
+        <div class="airplane-animation airplane-10">✈︎</div>
+
+        <header>
+            <div class="header-controls">
+                <button id="themeToggle" class="control-btn" title="Переключить тему">🌓</button>
+                <button id="langToggle" class="control-btn" title="Switch language">🌐</button>
+            </div>
+            <h1 data-lang-ru="Экспертная оценка стратегических сценариев" data-lang-en="Expert Evaluation of Strategic Scenarios">Экспертная оценка стратегических сценариев</h1>
+            <p class="subtitle" data-lang-ru="Развитие неавиационных услуг Международного аэропорта Шереметьево до 2031 года" data-lang-en="Development of non-aviation services at Sheremetyevo International Airport until 2031">Развитие неавиационных услуг Международного аэропорта Шереметьево до 2031 года</p>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-btn active" data-tab="survey" data-lang-ru="Анкета эксперта" data-lang-en="Expert Survey">Анкета эксперта</button>
+            <button class="tab-btn" data-tab="experts" data-lang-ru="База экспертов" data-lang-en="Expert Database">База экспертов</button>
+            <button class="tab-btn" data-tab="results" data-lang-ru="Результаты анализа" data-lang-en="Analysis Results">Результаты анализа</button>
+            <button class="tab-btn" data-tab="risks" data-lang-ru="Оценка рисков" data-lang-en="Risk Assessment">Оценка рисков</button>
+            <button class="tab-btn" data-tab="conclusion" data-lang-ru="Заключительный вывод" data-lang-en="Final Conclusion">Заключительный вывод</button>
+        </nav>
+
+        <div id="survey" class="tab-content active">
+            <!-- Научная инструкция -->
+            <div class="info-block scientific-instruction">
+                <h2>НАУЧНАЯ ИНСТРУКЦИЯ ПО МЕТОДОЛОГИИ ИССЛЕДОВАНИЯ</h2>
+                <div class="methodology-section">
+                    <h3>1. Теоретические основы</h3>
+                    <p>Настоящее исследование базируется на методологии экспертного оценивания стратегических альтернатив с применением системы сбалансированных показателей (Balanced Scorecard, BSC) и многокритериального анализа решений (MCDA).</p>
+                    
+                    <h3>2. Методы сбора данных</h3>
+                    <p><strong>Экспертный опрос</strong> проводится среди квалифицированных специалистов аэропортной отрасли с опытом работы не менее 3 лет. Выборка формируется методом целенаправленного отбора с учетом профессиональной специализации респондентов.</p>
+                    
+                    <h3>3. Система критериев оценки</h3>
+                    <p>Разработана иерархическая система критериев, структурированная по четырем перспективам BSC:</p>
+                    <ul>
+                        <li><strong>Финансовая перспектива</strong> — показатели экономической эффективности</li>
+                        <li><strong>Клиентская перспектива</strong> — метрики удовлетворенности и лояльности</li>
+                        <li><strong>Процессная перспектива</strong> — индикаторы операционной эффективности</li>
+                        <li><strong>Перспектива развития</strong> — показатели инновационного потенциала</li>
+                    </ul>
+                    
+                    <h3>4. Математический аппарат</h3>
+                    <p><strong>Взвешенная интегральная оценка:</strong> I = Σ(wi × xi), где wi — вес i-го критерия, xi — оценка по i-му критерию.</p>
+                    <p><strong>Коэффициент конкордации Кендалла:</strong> W = 12S/[n²(m³-m)], где S — сумма квадратов отклонений рангов, n — число экспертов, m — число альтернатив.</p>
+                    
+                    <h3>5. Анализ согласованности</h3>
+                    <p>Статистическая значимость согласованности экспертных мнений проверяется с использованием критерия хи-квадрат Пирсона при уровне значимости α = 0.05.</p>
+                    
+                    <h3>6. Анализ чувствительности</h3>
+                    <p>Проводится варьирование весовых коэффициентов перспектив BSC в диапазоне ±10% для оценки устойчивости полученных результатов к изменению приоритетов.</p>
+                </div>
+            </div>
+
+            <div class="info-block welcome">
+                <h2>Уважаемый эксперт!</h2>
+                <p>Благодарим Вас за участие в экспертном опросе по оценке стратегических сценариев развития неавиационных услуг Международного аэропорта Шереметьево на период до 2031 года.</p>
+                <p>Ваше мнение поможет определить наиболее эффективную стратегию развития коммерческой деятельности аэропорта. Заполнение анкеты займет не более 15-20 минут.</p>
+                <div class="form-group">
+                    <label>Дата заполнения: <span class="required">*</span></label>
+                    <input type="date" name="fillDate" required min="2025-12-01" max="2026-02-28">
+                </div>
+            </div>
+
+            <form id="expertForm">
+                <div class="form-section">
+                    <h3>РАЗДЕЛ 1. ИНФОРМАЦИЯ ОБ ЭКСПЕРТЕ</h3>
+                    <div class="form-group">
+                        <label>Должность: <span class="required">*</span></label>
+                        <input type="text" name="position" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Организация:</label>
+                        <input type="text" name="organization">
+                    </div>
+                    <div class="form-group">
+                        <label>Опыт работы в авиационной отрасли (лет): <span class="required">*</span></label>
+                        <input type="number" name="experience" min="3" max="17" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Область профессиональной специализации: <span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="specialization" value="Коммерческая деятельность" required> Коммерческая деятельность</label>
+                            <label><input type="radio" name="specialization" value="Маркетинг и продажи"> Маркетинг и продажи</label>
+                            <label><input type="radio" name="specialization" value="Стратегическое планирование"> Стратегическое планирование</label>
+                            <label><input type="radio" name="specialization" value="Операционная деятельность"> Операционная деятельность</label>
+                            <label><input type="radio" name="specialization" value="Финансы и инвестиции"> Финансы и инвестиции</label>
+                            <label><input type="radio" name="specialization" value="IT и цифровизация"> IT и цифровизация</label>
+                            <label><input type="radio" name="specialization" value="Другое"> Другое</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-block">
+                    <h2>РАЗДЕЛ 2. ОПИСАНИЕ СТРАТЕГИЧЕСКИХ СЦЕНАРИЕВ</h2>
+                    <p>Ознакомьтесь, пожалуйста, с кратким описанием трех сценариев развития неавиационных услуг аэропорта Шереметьево.</p>
+                </div>
+
+                <div class="scenarios-description">
+                    <div class="scenario-card">
+                        <h3>Сценарий 1: «Цифровая коммерция»</h3>
+                        <p><strong>Ключевая идея:</strong> Максимизация коммерческой отдачи через цифровизацию розничной торговли и монетизацию пассажиропотока.</p>
+                        <p><strong>Основной фокус:</strong></p>
+                        <ul>
+                            <li>Развитие цифровой коммерции (торговая площадка в приложении, предварительные заказы)</li>
+                            <li>Персонализированные продажи на основе данных о пассажирах</li>
+                            <li>Новые форматы розничной торговли (виртуальные примерочные, доставка к выходу)</li>
+                            <li>Гибкое ценообразование в магазинах беспошлинной торговли</li>
+                            <li>Рекламная платформа на основе данных</li>
+                        </ul>
+                        <p><strong>Ожидаемые результаты:</strong> Максимальный рост средних расходов пассажира (+140%), высокая доля неавиационных доходов (до 67%), срок окупаемости инвестиций (3-4 года).</p>
+                    </div>
+
+                    <div class="scenario-card">
+                        <h3>Сценарий 2: «Бесшовный клиентский опыт»</h3>
+                        <p><strong>Ключевая идея:</strong> Создание уникального, предсказуемого и персонализированного путешествия для пассажира, где коммерческие сервисы становятся неотъемлемой частью позитивного опыта.</p>
+                        <p><strong>Основной фокус:</strong></p>
+                        <ul>
+                            <li>Единый цифровой профиль пассажира на основе биометрии</li>
+                            <li>Система прогнозирования очередей и управления потоками</li>
+                            <li>Персонализированные рекомендации в мобильном приложении</li>
+                            <li>Интеграция с городскими сервисами и транспортом</li>
+                            <li>Премиальная подписка с расширенными услугами</li>
+                        </ul>
+                        <p><strong>Ожидаемые результаты:</strong> Максимальный индекс лояльности (NPS ≥65), высокая лояльность пассажиров и рост транзитных пассажиров, срок окупаемости 4-5 лет.</p>
+                    </div>
+
+                    <div class="scenario-card">
+                        <h3>Сценарий 3: «Умная инфраструктура и данные»</h3>
+                        <p><strong>Ключевая идея:</strong> Оптимизация операционной эффективности и создание новых бизнес-моделей на основе данных и Интернета вещей.</p>
+                        <p><strong>Основной фокус:</strong></p>
+                        <ul>
+                            <li>Развертывание сети датчиков в коммерческих зонах</li>
+                            <li>Автоматизация учета товаров (радиочастотная идентификация)</li>
+                            <li>Цифровые двойники терминалов</li>
+                            <li>Программная роботизация коммерческих процессов</li>
+                            <li>Платформа для монетизации данных</li>
+                        </ul>
+                        <p><strong>Ожидаемые результаты:</strong> Снижение операционных затрат на 20%, создание новых источников дохода от лицензирования технологий, срок окупаемости 5-6 лет.</p>
+                    </div>
+                </div>
+
+                <div class="info-block instruction">
+                    <h2>ПРИЛОЖЕНИЕ Б. ИНСТРУКЦИЯ ДЛЯ ЗАПОЛНЕНИЯ АНКЕТЫ</h2>
+                    <p>При заполнении анкеты просим Вас руководствоваться следующими рекомендациями:</p>
+                    
+                    <h4>Объективность</h4>
+                    <p>Оценивайте сценарии исходя из Вашего профессионального опыта и знаний, не ориентируясь на «ожидаемые» или «желаемые» результаты.</p>
+                    
+                    <h4>Независимость</h4>
+                    <p>Оценка по каждому критерию должна производиться независимо от других критериев. Старайтесь не допускать влияния общей симпатии к сценарию на частные оценки.</p>
+                    
+                    <h4>Использование всей шкалы</h4>
+                    <p>Старайтесь использовать все баллы шкалы (от 1 до 5), чтобы обеспечить дифференциацию сценариев.</p>
+                    
+                    <h4>Содержательный подход</h4>
+                    <p>При оценке ориентируйтесь на описание сценариев в Разделе 2 анкеты, а также на понимание текущей ситуации в аэропорту Шереметьево и отрасли в целом.</p>
+                    
+                    <h4>Пример заполнения:</h4>
+                    <p>В данном примере эксперт считает, что Сценарий 2 имеет очень высокий потенциал роста доли неавиационных доходов (5 баллов), Сценарий 1 — высокий потенциал (4 балла), а Сценарий 3 — средний потенциал (3 балла).</p>
+                </div>
+
+                <div class="form-section">
+                    <h3>РАЗДЕЛ 3. ОЦЕНКА СЦЕНАРИЕВ ПО КРИТЕРИЯМ</h3>
+                    <p class="instruction">Оцените каждый сценарий по 12 критериям, используя шкалу от 1 до 5 баллов:</p>
+                    <div class="scale-legend">
+                        <p><strong>1 балл</strong> — очень низкий потенциал/эффект</p>
+                        <p><strong>2 балла</strong> — низкий потенциал/эффект</p>
+                        <p><strong>3 балла</strong> — средний потенциал/эффект</p>
+                        <p><strong>4 балла</strong> — высокий потенциал/эффект</p>
+                        <p><strong>5 баллов</strong> — очень высокий потенциал/эффект</p>
+                    </div>
+                    
+                    <p class="instruction" style="margin-top: 20px;"><strong>Таблица 1. Финансовые критерии</strong></p>
+                    <table class="criteria-table">
+                        <thead>
+                            <tr>
+                                <th>Критерий</th>
+                                <th>Сценарий 1</th>
+                                <th>Сценарий 2</th>
+                                <th>Сценарий 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Рост средних расходов пассажира</td>
+                                <td><input type="number" name="s1_fin_1" min="1" max="5" required></td>
+                                <td><input type="number" name="s2_fin_1" min="1" max="5" required></td>
+                                <td><input type="number" name="s3_fin_1" min="1" max="5" required></td>
+                            </tr>
+                            <tr>
+                                <td>Рост доли неавиационных доходов</td>
+                                <td><input type="number" name="s1_fin_2" min="1" max="5" required></td>
+                                <td><input type="number" name="s2_fin_2" min="1" max="5" required></td>
+                                <td><input type="number" name="s3_fin_2" min="1" max="5" required></td>
+                            </tr>
+                            <tr>
+                                <td>Срок окупаемости инвестиций</td>
+                                <td><input type="number" name="s1_fin_3" min="1" max="5" required></td>
+                                <td><input type="number" name="s2_fin_3" min="1" max="5" required></td>
+                                <td><input type="number" name="s3_fin_3" min="1" max="5" required></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p class="instruction" style="margin-top: 30px;"><strong>Таблица 2. Клиентские критерии</strong></p>
+                    <table class="criteria-table">
+                        <thead>
+                            <tr>
+                                <th>Критерий</th>
+                                <th>Сценарий 1</th>
+                                <th>Сценарий 2</th>
+                                <th>Сценарий 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Индекс лояльности (NPS)</td>
+                                <td><input type="number" name="s1_client_1" min="1" max="5" required></td>
+                                <td><input type="number" name="s2_client_1" min="1" max="5" required></td>
+                                <td><input type="number" name="s3_client_1" min="1" max="5" required></td>
+                            </tr>
+                            <tr>
+                                <td>Лояльность пассажиров</td>
+                                <td><input type="number" name="s1_client_2" min="1" max="5" required></td>
+                                <td><input type="number" name="s2_client_2" min="1" max="5" required></td>
+                                <td><input type="number" name="s3_client_2" min="1" max="5" required></td>
+                            </tr>
+                            <tr>
+                                <td>Срок окупаемости</td>
+                                <td><input type="number" name="s1_client_3" min="1" max="5" required></td>
+                                <td><input type="number" name="s2_client_3" min="1" max="5" required></td>
+                                <td><input type="number" name="s3_client_3" min="1" max="5" required></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p class="instruction" style="margin-top: 30px;"><strong>Таблица 3. Критерии процессов</strong></p>
+                    <table class="criteria-table">
+                        <thead>
+                            <tr>
+                                <th>Критерий</th>
+                                <th>Сценарий 1</th>
+                                <th>Сценарий 2</th>
+                                <th>Сценарий 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Операционная эффективность</td>
+                                <td><input type="number" name="s1_process_1" min="1" max="5" required></td>
+                                <td><input type="number" name="s2_process_1" min="1" max="5" required></td>
+                                <td><input type="number" name="s3_process_1" min="1" max="5" required></td>
+                            </tr>
+                            <tr>
+                                <td>Снижение операционных затрат</td>
+                                <td><input type="number" name="s1_process_2" min="1" max="5" required></td>
+                                <td><input type="number" name="s2_process_2" min="1" max="5" required></td>
+                                <td><input type="number" name="s3_process_2" min="1" max="5" required></td>
+                            </tr>
+                            <tr>
+                                <td>Срок окупаемости</td>
+                                <td><input type="number" name="s1_process_3" min="1" max="5" required></td>
+                                <td><input type="number" name="s2_process_3" min="1" max="5" required></td>
+                                <td><input type="number" name="s3_process_3" min="1" max="5" required></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p class="instruction" style="margin-top: 30px;"><strong>Таблица 4. Критерии развития</strong></p>
+                    <table class="criteria-table">
+                        <thead>
+                            <tr>
+                                <th>Критерий</th>
+                                <th>Сценарий 1</th>
+                                <th>Сценарий 2</th>
+                                <th>Сценарий 3</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Инновационный потенциал</td>
+                                <td><input type="number" name="s1_dev_1" min="1" max="5" required></td>
+                                <td><input type="number" name="s2_dev_1" min="1" max="5" required></td>
+                                <td><input type="number" name="s3_dev_1" min="1" max="5" required></td>
+                            </tr>
+                            <tr>
+                                <td>Новые источники дохода</td>
+                                <td><input type="number" name="s1_dev_2" min="1" max="5" required></td>
+                                <td><input type="number" name="s2_dev_2" min="1" max="5" required></td>
+                                <td><input type="number" name="s3_dev_2" min="1" max="5" required></td>
+                            </tr>
+                            <tr>
+                                <td>Срок окупаемости</td>
+                                <td><input type="number" name="s1_dev_3" min="1" max="5" required></td>
+                                <td><input type="number" name="s2_dev_3" min="1" max="5" required></td>
+                                <td><input type="number" name="s3_dev_3" min="1" max="5" required></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="form-section">
+                    <h3>РАЗДЕЛ 4. РАНЖИРОВАНИЕ СЦЕНАРИЕВ</h3>
+                    <p>Проранжируйте сценарии по степени предпочтительности для реализации в аэропорту Шереметьево:</p>
+                    <p class="instruction"><strong>1</strong> — наиболее предпочтительный сценарий<br>
+                    <strong>2</strong> — средний по предпочтительности<br>
+                    <strong>3</strong> — наименее предпочтительный</p>
+                    
+                    <div class="ranking-container">
+                        <div class="ranking-item">
+                            <label>Сценарий 1: «Цифровая коммерция» <span class="required">*</span></label>
+                            <select name="rank_s1" required>
+                                <option value="">Выберите ранг</option>
+                                <option value="1">1 - Наиболее предпочтительный</option>
+                                <option value="2">2 - Средний по предпочтительности</option>
+                                <option value="3">3 - Наименее предпочтительный</option>
+                            </select>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <label>Сценарий 2: «Бесшовный клиентский опыт» <span class="required">*</span></label>
+                            <select name="rank_s2" required>
+                                <option value="">Выберите ранг</option>
+                                <option value="1">1 - Наиболее предпочтительный</option>
+                                <option value="2">2 - Средний по предпочтительности</option>
+                                <option value="3">3 - Наименее предпочтительный</option>
+                            </select>
+                        </div>
+                        
+                        <div class="ranking-item">
+                            <label>Сценарий 3: «Умная инфраструктура и данные» <span class="required">*</span></label>
+                            <select name="rank_s3" required>
+                                <option value="">Выберите ранг</option>
+                                <option value="1">1 - Наиболее предпочтительный</option>
+                                <option value="2">2 - Средний по предпочтительности</option>
+                                <option value="3">3 - Наименее предпочтительный</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <p style="margin-top: 15px;" class="thanks">БЛАГОДАРИМ ЗА УЧАСТИЕ В ЭКСПЕРТНОМ ОПРОСЕ!</p>
+                </div>
+
+                <button type="submit" class="btn-primary" data-lang-ru="Отправить анкету" data-lang-en="Submit Survey">Отправить анкету</button>
+            </form>
+        </div>
+
+        <div id="experts" class="tab-content">
+            <div class="experts-container">
+                <h2 data-lang-ru="База данных экспертов" data-lang-en="Expert Database">База данных экспертов</h2>
+                <div id="expertsTable"></div>
+            </div>
+        </div>
+
+        <div id="results" class="tab-content">
+            <div class="results-container">
+                <h2 data-lang-ru="Результаты экспертного анализа" data-lang-en="Expert Analysis Results">Результаты экспертного анализа</h2>
+                <div id="analysisResults"></div>
+            </div>
+        </div>
+
+        <div id="risks" class="tab-content">
+            <div class="results-container">
+                <h2 data-lang-ru="Оценка рисков реализации стратегии" data-lang-en="Risk Assessment">Оценка рисков реализации стратегии</h2>
+                <div id="risksResults"></div>
+            </div>
+        </div>
+
+        <div id="conclusion" class="tab-content">
+            <div class="results-container">
+                <h2 data-lang-ru="Заключительный вывод и рекомендации" data-lang-en="Final Conclusion">Заключительный вывод и рекомендации</h2>
+                <div id="conclusionResults"></div>
+            </div>
+        </div>
+
+        <div id="expertDetail" class="tab-content">
+            <div class="expert-detail-container">
+                <button class="btn-back" onclick="backToExperts()" data-lang-ru="← Назад к списку экспертов" data-lang-en="← Back to Expert List">← Назад к списку экспертов</button>
+                <div id="expertDetailContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер с авторством -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div></div>
+            <div class="footer-author">
+                <p><strong>Куренкова Екатерина Олеговна</strong></p>
+                <p class="footer-subtitle">Магистерская диссертация</p>
+                <p class="footer-subtitle">НИТУ «МИСиС» — Национальный исследовательский технологический университет</p>
+            </div>
+            <div></div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
