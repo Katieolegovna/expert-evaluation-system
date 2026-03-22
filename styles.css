@@ -2672,9 +2672,9 @@ body.dark-theme .airplane-svg {
 }
 
 .sensitivity-charts {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
     margin: 20px 0;
 }
 
@@ -2781,7 +2781,8 @@ body.dark-theme .airplane-svg {
 /* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
     .sensitivity-charts {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        gap: 20px;
     }
     
     .weights-table, .scenario-scores-table, .results-summary,
